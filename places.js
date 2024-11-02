@@ -120,7 +120,7 @@ function renderPlaces(places) {
         icon.setAttribute('location-marker','');
         icon.setAttribute('emitevents','true');
         icon.setAttribute('cursor','rayOrigin: mouse');
-        icon.setAttribute('id','icon-${index}');
+        icon.setAttribute('id',`icon-${index}`);
         // for debug purposes, just show in a bigger scale, otherwise I have to personally go on places...
         icon.setAttribute('scale', '3, 3');
 
@@ -135,8 +135,7 @@ function renderPlaces(places) {
             console.log(place.name);
             const name = ev.target.getAttribute('name');
             const el = ev.detail.intersection && ev.detail.intersection.object.el;
-
-            console.log(name,el);
+            console.log("details", ev,ev.target,name,el, "end")
             if (el && el === ev.target) {
                 const label = document.createElement('span');
                 const container = document.createElement('div');
