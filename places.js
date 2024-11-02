@@ -13,7 +13,7 @@ window.onload = () => {
             {
                 enableHighAccuracy: true,
                 maximumAge: 0,
-                timeout: 27000,
+                timeout: 2700,
             }
         );
     }
@@ -56,13 +56,13 @@ function staticLoadPlaces(position) {
                 lng: userLng - offset, // 1 meter west
             },
         },
-        {
-            name: "Temple",
-            location: {
-                lat: 11.144568,
-                lng: 79.08335,
-            },
-        },
+        // {
+        //     name: "Temple",
+        //     location: {
+        //         lat: 11.144568,
+        //         lng: 79.08335,
+        //     },
+        // },
         {
             name: "Office",
             location: {
@@ -120,18 +120,18 @@ function renderPlaces(places) {
         entity.setAttribute("id", `entity-${index}`);
         entity.setAttribute("emitevents", "true");
         entity.setAttribute("cursor", "rayOrigin: mouse");
+
         // add place icon
         const icon = document.createElement("a-image");
-        icon.setAttribute(
-            "gps-entity-place",
-            `latitude: ${latitude}; longitude: ${longitude}`
-        );
+        // icon.setAttribute(
+        //     "gps-entity-place",
+        //     `latitude: ${latitude}; longitude: ${longitude}`
+        // );
         icon.setAttribute("name", place.name);
         icon.setAttribute("src", "./map-marker.png");
         // icon.setAttribute("emitevents", "true");
         // icon.setAttribute("cursor", "rayOrigin: mouse");
         icon.setAttribute("id", `icon-${index}`);
-        // for debug purposes, just show in a bigger scale, otherwise I have to personally go on places...
         icon.setAttribute("scale", "3, 3");
 
         icon.addEventListener("loaded", () =>
@@ -141,11 +141,14 @@ function renderPlaces(places) {
         entity.appendChild(icon);
 
         entity.addEventListener("click", (ev) => {
+            console.log("Rgistered a click event");
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute("name");
             const el =
                 ev.detail.intersection && ev.detail.intersection.object.el;
+            console.log("Click event on", name);
+            console.log("details", ev,ev.detail,ev.detail.intersection,"\n",el);
             if (el && el === ev.target) {
                 console.log("Successful click on");
                 console.log(name);
