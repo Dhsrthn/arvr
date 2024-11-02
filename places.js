@@ -114,7 +114,7 @@ function renderPlaces(places) {
 
         const entity = document.createElement("a-entity");
         entity.setAttribute(
-            "gps-entity-place",
+            "gps-projected-entity-place",
             `latitude: ${latitude}; longitude: ${longitude}`
         );
         entity.setAttribute("name", place.name);
@@ -171,12 +171,12 @@ function renderPlaces(places) {
             z: textScale,
         });
         textElement.setAttribute(
-            "gps-entity-place",
+            "gps-projected-entity-place",
             `latitude: ${latitude}; longitude: ${longitude}`
         );
         textElement.setAttribute("value", place.name);
         textElement.setAttribute("position", "4,2,2");
-        textElement.setAttribute("look-at", "[gpsprojected--camera]");
+        textElement.setAttribute("look-at", "[gps-projected--camera]");
 
         entity.appendChild(textElement);
         entity.appendChild(icon);
