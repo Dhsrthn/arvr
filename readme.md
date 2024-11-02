@@ -6,7 +6,7 @@
 
 1) Example Mode 
     
-    This mode places markers right next you, which upon clicking gives a placeholder description
+    This mode places markers right next you, which upon clicking gives a placeholder description.
 
 2) JSON Mode 
 
@@ -27,3 +27,6 @@
 3) API Mode 
 
     This mode calls an external Rest API to get famous places nearby, and places a marker at each location.
+
+
+        Note: The markers sometimes only fire an click event to display description, when placed at the center of the screen.
