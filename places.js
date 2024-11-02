@@ -95,7 +95,7 @@ function dynamicLoadPlaces(position) {
 function renderPlaces(places) {
     let scene = document.querySelector('a-scene');
 
-    places.forEach((place) => {
+    places.forEach((place, index) => {
         const latitude = place.location.lat;
         const longitude = place.location.lng;
 
@@ -105,6 +105,9 @@ function renderPlaces(places) {
         icon.setAttribute('name', place.name);
         icon.setAttribute('src', './map-marker.png');
         icon.setAttribute('location-marker','');
+        icon.setAttribute('emitevents','true');
+        icon.setAttribute('cursor','rayOrigin: mouse');
+        icon.setAttribute('id','icon-${index}');
         // const iconText = document.createElement('a-text');
         // iconText.setAttribute('value', place.name);
         // iconText.setAttribute('color', 'black');
