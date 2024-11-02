@@ -163,7 +163,7 @@ function renderPlaces(places) {
         });
 
         const textElement = document.createElement("a-text");
-        const textScale = 100;
+        const textScale = 1;
         textElement.setAttribute("look-at", "[gps-camera]");
         textElement.setAttribute("scale", {
             x: textScale,
