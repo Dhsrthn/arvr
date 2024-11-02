@@ -1,80 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AR.js A-Frame Location-based</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/3.4.5/three.js/build/ar-threex-location-only.js'></script>
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js'></script>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>GeoAR.js demo</title>
+    <script src='https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js'></script>
+    <script src='../../build/aframe-ar.min.js'></script>
 </head>
-<body>
-    <a-scene vr-mode-ui='enabled: false' device-orientation-permission-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
-        <a-camera gps-camera='gpsMinDistance: 1'></a-camera>
-        <a-entity id="location-entity" material='color: red' geometry='primitive: box' scale="10 10 10"></a-entity>
-    </a-scene>
 
-    <!-- Input fields to enter new coordinates -->
-    <div style="position: absolute; top: 10px; left: 10px; z-index: 999;">
-        <label>Latitude: <input type="text" id="latitude-input"></label><br>
-        <label>Longitude: <input type="text" id="longitude-input"></label><br>
-        <button onclick="updateLocation()">Set Location</button>
-    </div>
+<link rel="stylesheet" href="../../src/location-based/stylesheets/index.css">
 
-    <!-- Display user's current location -->
-    <div id="user-location-display" style="position: absolute; top: 100px; left: 10px; z-index: 999; background-color: rgba(255, 255, 255, 0.8); padding: 10px;">
-        <strong>Current Position:</strong>
-        <p>Latitude: <span id="current-latitude">Loading...</span></p>
-        <p>Longitude: <span id="current-longitude">Loading...</span></p>
-    </div>
+<!-- Dynamically add places from Javascript -->
+<script src="./places.js"></script>
 
-    <script>
-        const entity = document.getElementById("location-entity");
+<body style='margin: 0; overflow: hidden;'>
+    <a-scene
+        cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'
+        raycaster="objects: [gps-entity-place];"
+        vr-mode-ui="enabled: false"
+		embedded
+		arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
 
-        // Function to set the entity position based on user input
-        function updateLocation() {
-            const latInput = document.getElementById("latitude-input").value;
-            const lonInput = document.getElementById("longitude-input").value;
-
-            if (latInput && lonInput) {
-                entity.setAttribute("gps-entity-place", `latitude: ${latInput}; longitude: ${lonInput}`);
-            } else {
-                alert("Please enter both latitude and longitude.");
-            }
-        }
-
-        // Set default location to user's current position and display the user's location
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                const userLat = position.coords.latitude;
-                const userLon = position.coords.longitude;
-
-                // Offset to position the entity nearby
-                const offsetLat = 0.0001; // Approximately 11 meters north
-                const offsetLon = 0.0001; // Approximately 11 meters east
-
-                // Set initial position of the entity
-                entity.setAttribute("gps-entity-place", `latitude: ${userLat + offsetLat}; longitude: ${userLon + offsetLon}`);
-
-                // Populate input fields with default values
-                document.getElementById("latitude-input").value = userLat + offsetLat;
-                document.getElementById("longitude-input").value = userLon + offsetLon;
-            }, function(error) {
-                console.error("Geolocation failed: ", error.message);
-            });
-
-            // Continuously update and display the user's location
-            navigator.geolocation.watchPosition(function(position) {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
-
-                // Update display
-                document.getElementById("current-latitude").innerText = lat;
-                document.getElementById("current-longitude").innerText = lon;
-            }, function(error) {
-                console.error("Geolocation failed: ", error.message);
-            });
-        } else {
-            alert("Geolocation is not supported by your browser.");
-        }
-    </script>
+        <a-camera gps-camera rotation-reader>
+		</a-camera>
+	</a-scene>
 </body>
-</html>
