@@ -130,17 +130,14 @@ function renderPlaces(places) {
         );
 
         icon.addEventListener("click", (ev) => {
-            console.log("Clicked1");
             ev.stopPropagation();
             ev.preventDefault();
-
-            console.log("Clicked2");
-            console.log(place.name);
             const name = ev.target.getAttribute("name");
             const el =
                 ev.detail.intersection && ev.detail.intersection.object.el;
-            console.log("details", ev, ev.target, name, el, "end");
             if (el && el === ev.target) {
+                console.log("Successful click on");
+                console.log(name)
                 const label = document.createElement("span");
                 const container = document.createElement("div");
                 container.setAttribute("id", "place-label");
