@@ -43,19 +43,20 @@ function staticLoadPlaces(position) {
 
     return [
         {
-            name: "Nearby Place 1",
-            location: {
-                lat: userLat + offset, // 1 meter north
-                lng: userLng + offset, // 1 meter east
-            },
-        },
-        {
             name: "Nearby Place 2",
             location: {
                 lat: userLat - offset, // 1 meter south
                 lng: userLng - offset, // 1 meter west
             },
         },
+        {
+            name: "Nearby Place 1",
+            location: {
+                lat: userLat + offset, // 1 meter north
+                lng: userLng + offset, // 1 meter east
+            },
+        },
+
         // {
         //     name: "Temple",
         //     location: {
