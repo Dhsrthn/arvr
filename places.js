@@ -42,7 +42,7 @@ function staticLoadPlaces(position) {
     const userLng = position.longitude;
 
     // Offset for approximately 1 meter (0.000009 degrees)
-    const offset = 0.000009;
+    const offset = 0.00001;
 
     return [
         {
