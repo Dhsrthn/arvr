@@ -117,7 +117,6 @@ function renderPlaces(places) {
         icon.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
         icon.setAttribute('name', place.name);
         icon.setAttribute('src', './map-marker.png');
-        icon.setAttribute('location-marker','');
         icon.setAttribute('emitevents','true');
         icon.setAttribute('cursor','rayOrigin: mouse');
         icon.setAttribute('id',`icon-${index}`);
@@ -151,7 +150,6 @@ function renderPlaces(places) {
         };
 
         icon.addEventListener('click', clickListener);
-        icon.addEventListener('tap', clickListener);
         scene.appendChild(icon);
     });
 }
