@@ -1,5 +1,4 @@
 window.onload = () => {
-
     let method = "dynamic";
 
     method = "static";
@@ -78,6 +77,11 @@ function staticLoadPlaces(position) {
     ];
 }
 
+function getDescriptionByName(name, places) {
+    const place = places.find((place) => place.name === name);
+    return place ? place.desc : "Description not available";
+}
+
 // getting places from REST APIs
 function dynamicLoadPlaces(position) {
     let params = {
@@ -107,11 +111,6 @@ function dynamicLoadPlaces(position) {
         .catch((err) => {
             console.error("Error with places API", err);
         });
-}
-
-function getDescriptionByName(name, places) {
-    const place = places.find((place) => place.name === name);
-    return place ? place.desc : "Description not available";
 }
 
 function renderPlaces(places) {
@@ -153,8 +152,13 @@ function renderPlaces(places) {
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute("name");
-            const description = getDescriptionByName(name, places);
-            window.alert(description); 
+            const el =
+                ev.detail.intersection && ev.detail.intersection.object.el;
+            console.log(name, el, ev, "checkkkk", ev.target);
+            if (el && el === ev.target) {
+                const desc = getDescriptionByName(name, places);
+                window.alert("Successful click on " + name + "\n" + desc);
+            }
         });
 
         const textElement = document.createElement("a-text");
@@ -175,8 +179,6 @@ function renderPlaces(places) {
         console.log("TextElement added " + place.name);
         scene.appendChild(icon);
         scene.appendChild(textElement);
-
-       
 
         // icon.addEventListener("click", clickListener);
     });
