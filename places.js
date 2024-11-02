@@ -141,7 +141,7 @@ function renderPlaces(places) {
             window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
         });
 
-        icon.addEventListener("click", (ev) => {
+        icon.addEventListener("mousedown", (ev) => {
             window.alert("Touched")
             ev.stopPropagation();
             ev.preventDefault();
