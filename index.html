@@ -36,6 +36,7 @@
 
         // Set default location to user's current position
         if (navigator.geolocation) {
+            console.log("Hai")
             navigator.geolocation.getCurrentPosition(function(position) {
                 const userLat = position.coords.latitude;
                 const userLon = position.coords.longitude;
