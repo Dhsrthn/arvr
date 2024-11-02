@@ -138,17 +138,12 @@ function renderPlaces(places) {
             window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"))
         );
 
-        entity.appendChild(icon);
-
         entity.addEventListener("click", (ev) => {
-            console.log("Rgistered a click event");
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute("name");
             const el =
                 ev.detail.intersection && ev.detail.intersection.object.el;
-            console.log("Click event on", name);
-            console.log("details", ev,ev.detail,ev.detail.intersection,"\n",el);
             if (el && el === ev.target) {
                 console.log("Successful click on");
                 console.log(name);
@@ -174,10 +169,16 @@ function renderPlaces(places) {
             z: textScale,
         });
         textElement.setAttribute("value", place.name);
-        textElement.setAttribute("align","center")
+        textElement.setAttribute("align", "center");
 
-        entity.appendChild(textElement);
+        entity.addEventListener("loaded", () => {
+            entity.appendChild(icon);
+            entity.appendChild(textElement);
+            console.log("TextElement added " + place.name);
+            window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+            scene.appendChild(entity);
+        });
+
         // icon.addEventListener("click", clickListener);
-        scene.appendChild(entity);
     });
 }
