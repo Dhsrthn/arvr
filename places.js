@@ -137,6 +137,10 @@ function renderPlaces(places) {
         icon.setAttribute("scale", "2, 2");
         icon.setAttribute("look-at", "[gps-camera]");
 
+        icon.addEventListener("loaded", () => {
+            window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+        });
+
         icon.addEventListener("click", (ev) => {
             window.alert("Touched")
             ev.stopPropagation();
@@ -177,11 +181,9 @@ function renderPlaces(places) {
 
         console.log("TextElement added " + place.name);
         scene.appendChild(icon);
-        scene.appendChild(iconElement);
+        scene.appendChild(textElement);
 
-        entity.addEventListener("loaded", () => {
-            window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
-        });
+       
 
         // icon.addEventListener("click", clickListener);
     });
