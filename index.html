@@ -13,6 +13,7 @@
     <script src="./places.js"></script>
 
     <body style="margin: 0; overflow: hidden">
+        <!-- Maybe add a whole UI wrapper with a div for displaying application name and a border on all sides of the a-scene -->
         <a-scene
             cursor="rayOrigin: mouse; fuse: false; fuseTimeout: 0;"
             raycaster="objects: [gps-entity-place]; far:1000; "
@@ -25,5 +26,13 @@
         >
             <a-camera gps-camera rotation-reader > </a-camera>
         </a-scene>
+
+        <!-- Three buttons here -->
+         <div style="display: flex; width: 100%;">
+            <button style="width: 30%;">Example</button>
+            <!-- On click asks for a json file to upload -->
+            <button style="width: 30%;">JSON</button>
+            <button style="width: 30%;" disabled>API Mode</button>
+         </div>
     </body>
 </html>

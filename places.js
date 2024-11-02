@@ -3,6 +3,11 @@ window.onload = () => {
 
     method = "static";
 
+    // method can be json, api, example
+    // for example, use static
+    // for json, parse an array of the given format and call renderPlaces with the array
+    // for api mode, use dynamic and call dynamicLoadPlaces
+
     if (method === "static") {
         navigator.geolocation.getCurrentPosition(
             function (position) {
@@ -39,40 +44,25 @@ function staticLoadPlaces(position) {
     const userLat = position.latitude;
     const userLng = position.longitude;
 
+    // 1 metre approximately
     const offset = 0.0001;
 
     return [
         {
             name: "Nearby Place 2",
             location: {
-                lat: userLat , // 1 meter south
-                lng: userLng - offset, // 1 meter west
+                lat: userLat ,  
+                lng: userLng - offset,  
             },
             desc: "This is a description for nearby place 2",
         },
         {
             name: "Nearby Place 1",
             location: {
-                lat: userLat + offset, // 1 meter north
-                lng: userLng + offset, // 1 meter east
+                lat: userLat + offset,  
+                lng: userLng + offset,  
             },
             desc: "This is a description for nearby place 1",
-        },
-
-        // {
-        //     name: "Temple",
-        //     location: {
-        //         lat: 11.144568,
-        //         lng: 79.08335,
-        //     },
-        // },
-        {
-            name: "Office",
-            location: {
-                lat: 11.144383,
-                lng: 79.083584,
-            },
-            desc: "This is a description for office",
         },
     ];
 }
@@ -120,22 +110,8 @@ function renderPlaces(places) {
         const latitude = place.location.lat;
         const longitude = place.location.lng;
 
-        // const entity = document.createElement("a-entity");
-        // entity.setAttribute(
-        //     "gps-entity-place",
-        //     `latitude: ${latitude}; longitude: ${longitude}`
-        // );
-        // entity.setAttribute("name", place.name);
-        // entity.setAttribute("id", `entity-${index}`);
-        // // entity.setAttribute("emitevents", "true");
-        // entity.setAttribute("cursor", "rayOrigin: mouse");
-
-        // add place icon
         const icon = document.createElement("a-image");
-        icon.setAttribute(
-            "gps-entity-place",
-            `latitude: ${latitude}; longitude: ${longitude}`
-        );
+        icon.setAttribute("gps-entity-place",`latitude: ${latitude}; longitude: ${longitude}`);
         icon.setAttribute("name", place.name);
         icon.setAttribute("src", "./map-marker.png");
         icon.setAttribute("emitevents", "true");
@@ -144,9 +120,7 @@ function renderPlaces(places) {
         icon.setAttribute("scale", "2, 2");
         icon.setAttribute("look-at", "[gps-camera]");
 
-        icon.addEventListener("loaded", () => {
-            window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
-        });
+        icon.addEventListener("loaded", () => {window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));});
 
         icon.addEventListener("mousedown", (ev) => {
             ev.stopPropagation();
@@ -154,7 +128,6 @@ function renderPlaces(places) {
             const name = ev.target.getAttribute("name");
             const el =
                 ev.detail.intersection && ev.detail.intersection.object.el;
-            console.log(name, el, ev, "checkkkk", ev.target);
             if (el && el === ev.target) {
                 const desc = getDescriptionByName(name, places);
                 window.alert("Successful click on " + name + "\n" + desc);
@@ -163,23 +136,12 @@ function renderPlaces(places) {
 
         const textElement = document.createElement("a-text");
         const textScale = 3;
-        textElement.setAttribute("scale", {
-            x: textScale,
-            y: textScale,
-            z: textScale,
-        });
-        textElement.setAttribute(
-            "gps-entity-place",
-            `latitude: ${latitude}; longitude: ${longitude}`
-        );
+        textElement.setAttribute("scale", {x: textScale,y: textScale,z: textScale,});
+        textElement.setAttribute("gps-entity-place",`latitude: ${latitude}; longitude: ${longitude}`);
         textElement.setAttribute("value", place.name);
         textElement.setAttribute("position", "5,2,2");
         textElement.setAttribute("look-at", "[gps-camera]");
-
-        console.log("TextElement added " + place.name);
         scene.appendChild(icon);
         scene.appendChild(textElement);
-
-        // icon.addEventListener("click", clickListener);
     });
 }
