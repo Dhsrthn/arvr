@@ -108,11 +108,12 @@ function renderPlaces(places) {
         icon.setAttribute('src', './map-marker.png');
 
         // for debug purposes, just show in a bigger scale, otherwise I have to personally go on places...
-        icon.setAttribute('scale', '0.5, 0.5');
+        icon.setAttribute('scale', '1, 1');
 
         icon.addEventListener('loaded', () => window.dispatchEvent(new CustomEvent('gps-entity-place-loaded')));
 
         const clickListener = function (ev) {
+            console.log("CLicked");
             ev.stopPropagation();
             ev.preventDefault();
 
