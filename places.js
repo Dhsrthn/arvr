@@ -173,12 +173,11 @@ function renderPlaces(places) {
             `latitude: ${latitude}; longitude: ${longitude}`
         );
         textElement.setAttribute("value", place.name);
-        textElement.setAttribute("align", "center");
         textElement.setAttribute("position", "0,-2,2");
         textElement.setAttribute("look-at", "[gps-camera]");
 
-        entity.appendChild(icon);
         entity.appendChild(textElement);
+        entity.appendChild(icon);
         console.log("TextElement added " + place.name);
         scene.appendChild(entity);
 
