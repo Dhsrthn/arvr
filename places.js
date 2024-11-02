@@ -1,7 +1,6 @@
 window.onload = () => {
     let method = 'dynamic';
 
-    // if you want to statically add places, de-comment following line
     method = 'static';
 
     if (method === 'static') {
@@ -41,7 +40,6 @@ function staticLoadPlaces(position) {
     const userLat = position.latitude;
     const userLng = position.longitude;
 
-    // Offset for approximately 1 meter (0.000009 degrees)
     const offset = 0.0001;
 
     return [
@@ -108,7 +106,7 @@ function renderPlaces(places) {
         icon.setAttribute('src', './map-marker.png');
 
         // for debug purposes, just show in a bigger scale, otherwise I have to personally go on places...
-        icon.setAttribute('scale', '1, 1');
+        icon.setAttribute('scale', '3, 3');
 
         icon.addEventListener('loaded', () => window.dispatchEvent(new CustomEvent('gps-entity-place-loaded')));
 
@@ -130,11 +128,12 @@ function renderPlaces(places) {
 
                 setTimeout(() => {
                     container.parentElement.removeChild(container);
-                }, 1500);
+                }, 2000);
             }
         };
 
         icon.addEventListener('click', clickListener);
+        scene.appendChild(icon);icon.addEventListener('tap', clickListener);
         scene.appendChild(icon);
     });
 }
