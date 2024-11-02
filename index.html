@@ -11,17 +11,6 @@
     <link rel="stylesheet" href="./index.css" />
 
     <!-- Dynamically add places from Javascript -->
-    <script>
-        AFRAME.registerComponent("location-marker", {
-            init: function () {
-                console.log(this);
-                this.el.addEventListener("click", (e) => {
-                    alert("Box clicked!");
-                    console.log(e);
-                });
-            },
-        });
-    </script>
     <script src="./places.js"></script>
 
     <body style="margin: 0; overflow: hidden">
