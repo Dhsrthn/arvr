@@ -1,9 +1,5 @@
 window.onload = () => {
 
-    document.addEventListener("touchend", (ev) => {
-        console.log(ev)
-    })
-
     let method = "dynamic";
 
     method = "static";
@@ -125,7 +121,7 @@ function renderPlaces(places) {
         entity.setAttribute("name", place.name);
         entity.setAttribute("id", `entity-${index}`);
         // entity.setAttribute("emitevents", "true");
-        // entity.setAttribute("cursor", "rayOrigin: mouse");
+        entity.setAttribute("cursor", "rayOrigin: mouse");
 
         // add place icon
         const icon = document.createElement("a-image");
