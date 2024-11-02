@@ -176,7 +176,7 @@ function renderPlaces(places) {
         );
         textElement.setAttribute("value", place.name);
         textElement.setAttribute("position", "4,2,2");
-        textElement.setAttribute("look-at", "[gps--camera]");
+        textElement.setAttribute("look-at", "[gps-camera]");
 
         entity.appendChild(textElement);
         entity.appendChild(icon);
