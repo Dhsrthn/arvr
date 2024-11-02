@@ -113,15 +113,15 @@ function renderPlaces(places) {
         const latitude = place.location.lat;
         const longitude = place.location.lng;
 
-        const entity = document.createElement("a-entity");
-        entity.setAttribute(
-            "gps-entity-place",
-            `latitude: ${latitude}; longitude: ${longitude}`
-        );
-        entity.setAttribute("name", place.name);
-        entity.setAttribute("id", `entity-${index}`);
-        // entity.setAttribute("emitevents", "true");
-        entity.setAttribute("cursor", "rayOrigin: mouse");
+        // const entity = document.createElement("a-entity");
+        // entity.setAttribute(
+        //     "gps-entity-place",
+        //     `latitude: ${latitude}; longitude: ${longitude}`
+        // );
+        // entity.setAttribute("name", place.name);
+        // entity.setAttribute("id", `entity-${index}`);
+        // // entity.setAttribute("emitevents", "true");
+        // entity.setAttribute("cursor", "rayOrigin: mouse");
 
         // add place icon
         const icon = document.createElement("a-image");
@@ -172,13 +172,12 @@ function renderPlaces(places) {
             `latitude: ${latitude}; longitude: ${longitude}`
         );
         textElement.setAttribute("value", place.name);
-        textElement.setAttribute("position", "4,2,2");
+        textElement.setAttribute("position", "5,2,2");
         textElement.setAttribute("look-at", "[gps-camera]");
 
-        entity.appendChild(textElement);
-        entity.appendChild(icon);
         console.log("TextElement added " + place.name);
-        scene.appendChild(entity);
+        scene.appendChild(icon);
+        scene.appendChild(iconElement);
 
         entity.addEventListener("loaded", () => {
             window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
