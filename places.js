@@ -162,7 +162,7 @@ function renderPlaces(places) {
         });
 
         const textElement = document.createElement("a-text");
-        const textScale = 2;
+        const textScale = 4;
         textElement.setAttribute("scale", {
             x: textScale,
             y: textScale,
@@ -175,6 +175,7 @@ function renderPlaces(places) {
         textElement.setAttribute("value", place.name);
         textElement.setAttribute("align", "center");
         textElement.setAttribute("position", "0,-2,2");
+        textElement.setAttribute("look-at", "[gps-camera]");
 
         entity.appendChild(icon);
         entity.appendChild(textElement);
