@@ -147,7 +147,7 @@ function renderPlaces(places) {
             const name = ev.target.getAttribute("name");
             const el =
                 ev.detail.intersection && ev.detail.intersection.object.el;
-            console.log(name,el, ev.target);
+            console.log(name,el, ev.target, el);
             if (el && el === ev.target) {
                 window.alert("Successful click on " + name);
                 const label = document.createElement("span");
