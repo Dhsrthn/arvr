@@ -142,7 +142,7 @@ function renderPlaces(places) {
         icon.setAttribute("look-at", "[gps-camera]");
 
         icon.addEventListener("click", (ev) => {
-            console.log("Touched")
+            window.alert("Touched")
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute("name");
