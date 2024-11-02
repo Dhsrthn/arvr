@@ -141,6 +141,7 @@ function renderPlaces(places) {
         );
 
         entity.addEventListener("touchend", (ev) => {
+            console.log("Touched")
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute("name");
