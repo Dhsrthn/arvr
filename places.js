@@ -42,7 +42,7 @@ function staticLoadPlaces(position) {
     const userLng = position.longitude;
 
     // Offset for approximately 1 meter (0.000009 degrees)
-    const offset = 0.00001;
+    const offset = 0.0001;
 
     return [
         {
@@ -108,7 +108,7 @@ function renderPlaces(places) {
         icon.setAttribute('src', './map-marker.png');
 
         // for debug purposes, just show in a bigger scale, otherwise I have to personally go on places...
-        icon.setAttribute('scale', '1, 1');
+        icon.setAttribute('scale', '0.5, 0.5');
 
         icon.addEventListener('loaded', () => window.dispatchEvent(new CustomEvent('gps-entity-place-loaded')));
 
