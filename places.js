@@ -45,7 +45,7 @@ function staticLoadPlaces(position) {
         {
             name: "Nearby Place 2",
             location: {
-                lat: userLat - offset, // 1 meter south
+                lat: userLat , // 1 meter south
                 lng: userLng - offset, // 1 meter west
             },
             desc: "This is a description for nearby place 2",
