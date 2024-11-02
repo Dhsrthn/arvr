@@ -100,10 +100,16 @@ function renderPlaces(places) {
         const longitude = place.location.lng;
 
         // add place icon
-        const icon = document.createElement('a-image');
+        const icon = document.createElement('a-entity');
         icon.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
         icon.setAttribute('name', place.name);
         icon.setAttribute('src', './map-marker.png');
+        const iconText = document.createElement('a-text');
+        iconText.setAttribute('value', place.name);
+        iconText.setAttribute('color', 'black');
+        iconText.setAttribute('position', '0 -1 0');
+        iconText.setAttribute('scale', '15 15 15');
+        icon.appendChild(iconText);
 
         // for debug purposes, just show in a bigger scale, otherwise I have to personally go on places...
         icon.setAttribute('scale', '3, 3');
