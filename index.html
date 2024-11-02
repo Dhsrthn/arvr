@@ -19,7 +19,10 @@
             raycaster="objects: [gps-entity-place];"
             vr-mode-ui="enabled: false"
             embedded
+            gpsMinDistance="1"
             arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;"
+            maxDistance="10"
+            gpsTimeInterval ="0"
         >
             <a-camera gps-camera rotation-reader> </a-camera>
         </a-scene>

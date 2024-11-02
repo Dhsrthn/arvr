@@ -111,6 +111,15 @@ function renderPlaces(places) {
         const latitude = place.location.lat;
         const longitude = place.location.lng;
 
+        const entity = document.createElement("a-entity");
+        entity.setAttribute(
+            "gps-entity-place",
+            `latitude: ${latitude}; longitude: ${longitude}`
+        );
+        entity.setAttribute("name", place.name);
+        entity.setAttribute("id", `entity-${index}`);
+        entity.setAttribute("emitevents", "true");
+        entity.setAttribute("cursor", "rayOrigin: mouse");
         // add place icon
         const icon = document.createElement("a-image");
         icon.setAttribute(
@@ -119,8 +128,8 @@ function renderPlaces(places) {
         );
         icon.setAttribute("name", place.name);
         icon.setAttribute("src", "./map-marker.png");
-        icon.setAttribute("emitevents", "true");
-        icon.setAttribute("cursor", "rayOrigin: mouse");
+        // icon.setAttribute("emitevents", "true");
+        // icon.setAttribute("cursor", "rayOrigin: mouse");
         icon.setAttribute("id", `icon-${index}`);
         // for debug purposes, just show in a bigger scale, otherwise I have to personally go on places...
         icon.setAttribute("scale", "3, 3");
@@ -129,7 +138,9 @@ function renderPlaces(places) {
             window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"))
         );
 
-        icon.addEventListener("click", (ev) => {
+        entity.appendChild(icon);
+
+        entity.addEventListener("click", (ev) => {
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute("name");
@@ -137,7 +148,7 @@ function renderPlaces(places) {
                 ev.detail.intersection && ev.detail.intersection.object.el;
             if (el && el === ev.target) {
                 console.log("Successful click on");
-                console.log(name)
+                console.log(name);
                 const label = document.createElement("span");
                 const container = document.createElement("div");
                 container.setAttribute("id", "place-label");
@@ -151,9 +162,19 @@ function renderPlaces(places) {
             }
         });
 
-        // const clickListener = function (ev) {};
+        const textElement = document.createElement("a-text");
+        const textScale = 100;
+        text.setAttribute("look-at", "[gps-new-camera]");
+        text.setAttribute("scale", {
+            x: textScale,
+            y: textScale,
+            z: textScale,
+        });
+        text.setAttribute("value", place.name);
+        text.setAttribute("align","center")
 
+        entity.appendChild(textElement);
         // icon.addEventListener("click", clickListener);
-        scene.appendChild(icon);
+        scene.appendChild(entity);
     });
 }
