@@ -164,14 +164,14 @@ function renderPlaces(places) {
 
         const textElement = document.createElement("a-text");
         const textScale = 100;
-        text.setAttribute("look-at", "[gps-new-camera]");
-        text.setAttribute("scale", {
+        textElement.setAttribute("look-at", "[gps-camera]");
+        textElement.setAttribute("scale", {
             x: textScale,
             y: textScale,
             z: textScale,
         });
-        text.setAttribute("value", place.name);
-        text.setAttribute("align","center")
+        textElement.setAttribute("value", place.name);
+        textElement.setAttribute("align","center")
 
         entity.appendChild(textElement);
         // icon.addEventListener("click", clickListener);
