@@ -100,7 +100,7 @@ function renderPlaces(places) {
         const longitude = place.location.lng;
 
         // add place icon
-        const icon = document.createElement('a-entity');
+        const icon = document.createElement('a-image');
         icon.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
         icon.setAttribute('name', place.name);
         icon.setAttribute('src', './map-marker.png');
@@ -140,7 +140,7 @@ function renderPlaces(places) {
         };
 
         icon.addEventListener('click', clickListener);
-        scene.appendChild(icon);icon.addEventListener('tap', clickListener);
         scene.appendChild(icon);
+        icon.addEventListener('tap', clickListener);
     });
 }
