@@ -1,4 +1,9 @@
 window.onload = () => {
+
+    document.addEventListener("touchend", (ev) => {
+        console.log(ev)
+    })
+
     let method = "dynamic";
 
     method = "static";
@@ -140,7 +145,7 @@ function renderPlaces(places) {
             window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"))
         );
 
-        entity.addEventListener("touchend", (ev) => {
+        entity.addEventListener("click", (ev) => {
             console.log("Touched")
             ev.stopPropagation();
             ev.preventDefault();
