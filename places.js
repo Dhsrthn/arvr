@@ -148,7 +148,7 @@ function renderPlaces(places) {
             const el =
                 ev.detail.intersection && ev.detail.intersection.object.el;
             if (el && el === ev.target) {
-                alert("Successful click on " + name);
+                window.alert("Successful click on " + name);
                 const label = document.createElement("span");
                 const container = document.createElement("div");
                 container.setAttribute("id", "place-label");
