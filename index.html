@@ -19,6 +19,13 @@
         <button onclick="updateLocation()">Set Location</button>
     </div>
 
+    <!-- Display user's current location -->
+    <div id="user-location-display" style="position: absolute; top: 100px; left: 10px; z-index: 999; background-color: rgba(255, 255, 255, 0.8); padding: 10px;">
+        <strong>Current Position:</strong>
+        <p>Latitude: <span id="current-latitude">Loading...</span></p>
+        <p>Longitude: <span id="current-longitude">Loading...</span></p>
+    </div>
+
     <script>
         const entity = document.getElementById("location-entity");
 
@@ -34,9 +41,8 @@
             }
         }
 
-        // Set default location to user's current position
+        // Set default location to user's current position and display the user's location
         if (navigator.geolocation) {
-            console.log("Hai")
             navigator.geolocation.getCurrentPosition(function(position) {
                 const userLat = position.coords.latitude;
                 const userLon = position.coords.longitude;
@@ -51,6 +57,18 @@
                 // Populate input fields with default values
                 document.getElementById("latitude-input").value = userLat + offsetLat;
                 document.getElementById("longitude-input").value = userLon + offsetLon;
+            }, function(error) {
+                console.error("Geolocation failed: ", error.message);
+            });
+
+            // Continuously update and display the user's location
+            navigator.geolocation.watchPosition(function(position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+
+                // Update display
+                document.getElementById("current-latitude").innerText = lat;
+                document.getElementById("current-longitude").innerText = lon;
             }, function(error) {
                 console.error("Geolocation failed: ", error.message);
             });
