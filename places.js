@@ -133,7 +133,7 @@ function renderPlaces(places) {
         // icon.setAttribute("emitevents", "true");
         // icon.setAttribute("cursor", "rayOrigin: mouse");
         icon.setAttribute("id", `icon-${index}`);
-        icon.setAttribute("scale", "3, 3");
+        icon.setAttribute("scale", "2, 2");
 
         icon.addEventListener("loaded", () =>
             window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"))
@@ -162,7 +162,7 @@ function renderPlaces(places) {
         });
 
         const textElement = document.createElement("a-text");
-        const textScale = 4;
+        const textScale = 3;
         textElement.setAttribute("scale", {
             x: textScale,
             y: textScale,
@@ -173,7 +173,7 @@ function renderPlaces(places) {
             `latitude: ${latitude}; longitude: ${longitude}`
         );
         textElement.setAttribute("value", place.name);
-        textElement.setAttribute("position", "2,2,2");
+        textElement.setAttribute("position", "3,0,2");
         textElement.setAttribute("look-at", "[gps-camera]");
 
         entity.appendChild(textElement);
