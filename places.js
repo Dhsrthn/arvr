@@ -171,12 +171,13 @@ function renderPlaces(places) {
         textElement.setAttribute("value", place.name);
         textElement.setAttribute("align", "center");
 
+        entity.appendChild(icon);
+        entity.appendChild(textElement);
+        console.log("TextElement added " + place.name);
+        scene.appendChild(entity);
+
         entity.addEventListener("loaded", () => {
-            entity.appendChild(icon);
-            entity.appendChild(textElement);
-            console.log("TextElement added " + place.name);
             window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
-            scene.appendChild(entity);
         });
 
         // icon.addEventListener("click", clickListener);
