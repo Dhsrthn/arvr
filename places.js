@@ -49,6 +49,7 @@ function staticLoadPlaces(position) {
                 lat: userLat - offset, // 1 meter south
                 lng: userLng - offset, // 1 meter west
             },
+            desc: "This is a description for nearby place 2",
         },
         {
             name: "Nearby Place 1",
@@ -56,6 +57,7 @@ function staticLoadPlaces(position) {
                 lat: userLat + offset, // 1 meter north
                 lng: userLng + offset, // 1 meter east
             },
+            desc: "This is a description for nearby place 1",
         },
 
         // {
@@ -71,6 +73,7 @@ function staticLoadPlaces(position) {
                 lat: 11.144383,
                 lng: 79.083584,
             },
+            desc: "This is a description for office",
         },
     ];
 }
@@ -104,6 +107,11 @@ function dynamicLoadPlaces(position) {
         .catch((err) => {
             console.error("Error with places API", err);
         });
+}
+
+function getDescriptionByName(name, places) {
+    const place = places.find((place) => place.name === name);
+    return place ? place.desc : "Description not available";
 }
 
 function renderPlaces(places) {
@@ -145,22 +153,8 @@ function renderPlaces(places) {
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute("name");
-            const el =
-                ev.detail.intersection && ev.detail.intersection.object.el;
-            console.log(name,el, ev, "checkkkk", ev.target);
-            if (el && el === ev.target) {
-                window.alert("Successful click on " + name);
-                const label = document.createElement("span");
-                const container = document.createElement("div");
-                container.setAttribute("id", "place-label");
-                label.innerText = name;
-                container.appendChild(label);
-                document.body.appendChild(container);
-
-                setTimeout(() => {
-                    container.parentElement.removeChild(container);
-                }, 2000);
-            }
+            const description = getDescriptionByName(name, places);
+            window.alert(description); 
         });
 
         const textElement = document.createElement("a-text");
