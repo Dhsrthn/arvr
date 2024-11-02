@@ -114,7 +114,7 @@ function renderPlaces(places) {
 
         const entity = document.createElement("a-entity");
         entity.setAttribute(
-            "gps-projected-entity-place",
+            "gps-entity-place",
             `latitude: ${latitude}; longitude: ${longitude}`
         );
         entity.setAttribute("name", place.name);
@@ -125,7 +125,7 @@ function renderPlaces(places) {
         // add place icon
         const icon = document.createElement("a-image");
         icon.setAttribute(
-            "gps-projected-entity-place",
+            "gps-entity-place",
             `latitude: ${latitude}; longitude: ${longitude}`
         );
         icon.setAttribute("name", place.name);
@@ -134,7 +134,7 @@ function renderPlaces(places) {
         // icon.setAttribute("cursor", "rayOrigin: mouse");
         icon.setAttribute("id", `icon-${index}`);
         icon.setAttribute("scale", "2, 2");
-        icon.setAttribute("look-at", "[gps-projected-camera]");
+        icon.setAttribute("look-at", "[gps-camera]");
         icon.setAttribute("style", "border: 2px solid red; border-radius: 50%;");
 
         icon.addEventListener("loaded", () =>
@@ -171,12 +171,12 @@ function renderPlaces(places) {
             z: textScale,
         });
         textElement.setAttribute(
-            "gps-projected-entity-place",
+            "gps-entity-place",
             `latitude: ${latitude}; longitude: ${longitude}`
         );
         textElement.setAttribute("value", place.name);
         textElement.setAttribute("position", "4,2,2");
-        textElement.setAttribute("look-at", "[gps-projected--camera]");
+        textElement.setAttribute("look-at", "[gps--camera]");
 
         entity.appendChild(textElement);
         entity.appendChild(icon);
