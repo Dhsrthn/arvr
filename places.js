@@ -124,24 +124,24 @@ function renderPlaces(places) {
         );
         entity.setAttribute("name", place.name);
         entity.setAttribute("id", `entity-${index}`);
-        entity.setAttribute("emitevents", "true");
-        entity.setAttribute("cursor", "rayOrigin: mouse");
+        // entity.setAttribute("emitevents", "true");
+        // entity.setAttribute("cursor", "rayOrigin: mouse");
 
         // add place icon
         const icon = document.createElement("a-image");
-        // icon.setAttribute(
-        //     "gps-entity-place",
-        //     `latitude: ${latitude}; longitude: ${longitude}`
-        // );
+        icon.setAttribute(
+            "gps-entity-place",
+            `latitude: ${latitude}; longitude: ${longitude}`
+        );
         icon.setAttribute("name", place.name);
         icon.setAttribute("src", "./map-marker.png");
-        // icon.setAttribute("emitevents", "true");
-        // icon.setAttribute("cursor", "rayOrigin: mouse");
+        icon.setAttribute("emitevents", "true");
+        icon.setAttribute("cursor", "rayOrigin: mouse");
         icon.setAttribute("id", `icon-${index}`);
         icon.setAttribute("scale", "2, 2");
         icon.setAttribute("look-at", "[gps-camera]");
 
-        entity.addEventListener("click", (ev) => {
+        icon.addEventListener("click", (ev) => {
             console.log("Touched")
             ev.stopPropagation();
             ev.preventDefault();
@@ -171,10 +171,10 @@ function renderPlaces(places) {
             y: textScale,
             z: textScale,
         });
-        // textElement.setAttribute(
-        //     "gps-entity-place",
-        //     `latitude: ${latitude}; longitude: ${longitude}`
-        // );
+        textElement.setAttribute(
+            "gps-entity-place",
+            `latitude: ${latitude}; longitude: ${longitude}`
+        );
         textElement.setAttribute("value", place.name);
         textElement.setAttribute("position", "4,2,2");
         textElement.setAttribute("look-at", "[gps-camera]");
