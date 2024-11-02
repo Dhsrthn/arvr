@@ -127,11 +127,11 @@ function renderPlaces(places) {
         icon.addEventListener('loaded', () => window.dispatchEvent(new CustomEvent('gps-entity-place-loaded')));
 
         const clickListener = function (ev) {
-            console.log("Clicked");
-            console.log(place.name);
             ev.stopPropagation();
             ev.preventDefault();
 
+            console.log("Clicked");
+            console.log(place.name);
             const name = ev.target.getAttribute('name');
             const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
