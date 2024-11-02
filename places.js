@@ -135,13 +135,12 @@ function renderPlaces(places) {
         icon.setAttribute("id", `icon-${index}`);
         icon.setAttribute("scale", "2, 2");
         icon.setAttribute("look-at", "[gps-camera]");
-        icon.setAttribute("style", "border: 2px solid red; border-radius: 50%;");
 
         icon.addEventListener("loaded", () =>
             window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"))
         );
 
-        entity.addEventListener("click", (ev) => {
+        entity.addEventListener("touchend", (ev) => {
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute("name");
