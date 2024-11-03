@@ -1,66 +1,108 @@
+// method can be json, api, example
+// for example, use static
+// for json, parse an array of the given format and call renderPlaces with the array
+// for api mode, use dynamic and call dynamicLoadPlaces
+
+//inital method
+var method = "sample";
+
 window.onload = () => {
-    let method = "dynamic";
-
-    method = "static";
-
-    // method can be json, api, example
-    // for example, use static
-    // for json, parse an array of the given format and call renderPlaces with the array
-    // for api mode, use dynamic and call dynamicLoadPlaces
-
-    if (method === "static") {
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                const places = staticLoadPlaces(position.coords);
-                renderPlaces(places);
-            },
-            (err) => console.error("Error in retrieving position", err),
-            {
-                enableHighAccuracy: true,
-                maximumAge: 0,
-                timeout: 27000,
-            }
-        );
-    }
-
-    if (method !== "static") {
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                dynamicLoadPlaces(position.coords).then((places) => {
-                    renderPlaces(places);
-                });
-            },
-            (err) => console.error("Error in retrieving position", err),
-            {
-                enableHighAccuracy: true,
-                maximumAge: 0,
-                timeout: 27000,
-            }
-        );
-    }
+    modeChange(method);
 };
+
+function removeAllImagesAndText() {
+    const scene = document.querySelector("a-scene");
+    scene.querySelectorAll("a-image, a-text").forEach((element) => {
+        scene.removeChild(element);
+    });
+}
+
+function loadPlacesBasedOnMethod() {
+    switch (method) {
+        case "sample": {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const places = staticLoadPlaces(position.coords);
+                    renderPlaces(places);
+                },
+                (err) => console.error("Error in retrieving position", err),
+                { enableHighAccuracy: true, maximumAge: 0, timeout: 27000 }
+            );
+            break;
+        }
+        case "api": {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    dynamicLoadPlaces(position.coords).then((places) => {
+                        renderPlaces(places);
+                    });
+                },
+                (err) => console.error("Error in retrieving position", err),
+                { enableHighAccuracy: true, maximumAge: 0, timeout: 27000 }
+            );
+            break;
+        }
+        case "json": {
+            document.getElementById("jsonUpload").click();
+            break;
+        }
+        default: {
+            console.error("Invalid method");
+        }
+    }
+}
+
+function modeChange(selectedMethod) {
+    method = selectedMethod;
+    console.log("Method changed to", method);
+    document.querySelectorAll("button.mode-btn").forEach((btn) => {
+        btn.disabled = false;
+    });
+    document.getElementById(`${method}-btn`).disabled = true;
+
+    removeAllImagesAndText();
+    loadPlacesBasedOnMethod();
+}
+
+function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            try {
+                const places = JSON.parse(e.target.result);
+                console.log("Places loaded from JSON", places);
+                renderPlaces(places);
+            } catch (err) {
+                console.error("Error parsing JSON file:", err);
+                alert("Invalid JSON file. Please upload a valid JSON file.");
+            }
+        };
+        reader.readAsText(file);
+    }
+}
 
 function staticLoadPlaces(position) {
     const userLat = position.latitude;
     const userLng = position.longitude;
 
-    // 1 metre approximately
-    const offset = 0.0001;
+    // 2 metre approximately
+    const offset = 0.0002;
 
     return [
         {
             name: "Nearby Place 2",
             location: {
-                lat: userLat ,  
-                lng: userLng - offset,  
+                lat: userLat,
+                lng: userLng - offset,
             },
             desc: "This is a description for nearby place 2",
         },
         {
             name: "Nearby Place 1",
             location: {
-                lat: userLat + offset,  
-                lng: userLng + offset,  
+                lat: userLat + offset,
+                lng: userLng + offset,
             },
             desc: "This is a description for nearby place 1",
         },
@@ -72,7 +114,6 @@ function getDescriptionByName(name, places) {
     return place ? place.desc : "Description not available";
 }
 
-// getting places from REST APIs
 function dynamicLoadPlaces(position) {
     let params = {
         radius: 300, // search places not farther than this value (in meters)
@@ -111,7 +152,10 @@ function renderPlaces(places) {
         const longitude = place.location.lng;
 
         const icon = document.createElement("a-image");
-        icon.setAttribute("gps-entity-place",`latitude: ${latitude}; longitude: ${longitude}`);
+        icon.setAttribute(
+            "gps-entity-place",
+            `latitude: ${latitude}; longitude: ${longitude}`
+        );
         icon.setAttribute("name", place.name);
         icon.setAttribute("src", "./map-marker.png");
         icon.setAttribute("emitevents", "true");
@@ -120,7 +164,9 @@ function renderPlaces(places) {
         icon.setAttribute("scale", "2, 2");
         icon.setAttribute("look-at", "[gps-camera]");
 
-        icon.addEventListener("loaded", () => {window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));});
+        icon.addEventListener("loaded", () => {
+            window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+        });
 
         icon.addEventListener("mousedown", (ev) => {
             ev.stopPropagation();
@@ -136,8 +182,15 @@ function renderPlaces(places) {
 
         const textElement = document.createElement("a-text");
         const textScale = 3;
-        textElement.setAttribute("scale", {x: textScale,y: textScale,z: textScale,});
-        textElement.setAttribute("gps-entity-place",`latitude: ${latitude}; longitude: ${longitude}`);
+        textElement.setAttribute("scale", {
+            x: textScale,
+            y: textScale,
+            z: textScale,
+        });
+        textElement.setAttribute(
+            "gps-entity-place",
+            `latitude: ${latitude}; longitude: ${longitude}`
+        );
         textElement.setAttribute("value", place.name);
         textElement.setAttribute("position", "5,2,2");
         textElement.setAttribute("look-at", "[gps-camera]");
@@ -145,3 +198,9 @@ function renderPlaces(places) {
         scene.appendChild(textElement);
     });
 }
+
+function closeDialog() {
+    document.getElementById("info-dialog").style.display = "none";
+}
+
+setTimeout(closeDialog, 10000);
