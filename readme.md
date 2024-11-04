@@ -2,15 +2,17 @@
 
     Use a mobile for the best experience 
 
+### Demo video can be found at [link](https://www.youtube.com/watch?v=OqKNpfwWpxU)
+
 ### Three Modes 
 
 1) Example Mode 
     
-    This mode places markers right next you, which upon clicking gives a placeholder description.
+    This mode places markers right next to you, which, upon clicking, gives a placeholder description.
 
 2) JSON Mode 
 
-    This mode lets a user upload a JSON file, of an array of objects each of the schema:
+    This mode lets a user upload a JSON file of an array of objects in each of the schema:
 
     ``` 
     {
@@ -26,7 +28,11 @@
 
 3) API Mode 
 
-    This mode calls an external Rest API to get famous places nearby, and places a marker at each location.
+    This mode calls an external Rest API to get famous places nearby and places a marker at each location.
 
 
-        Note: The markers sometimes only fire an click event to display description, when placed at the center of the screen.
+        Note: The markers sometimes only fire a click event to display the description when placed at the center of the screen.
+
+##### Disclaimer 
+
+    The API mode won't be functional in the application hosted right now, due to the API being a paid service. 
