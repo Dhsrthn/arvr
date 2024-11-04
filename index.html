@@ -44,14 +44,14 @@
                 padding: 10px;
                 border-radius: 40px 40px 0px 0px;
                 background: black;
-                opacity: 0.8;
+                opacity: 0.9;
             "
         >
             <div
                 style="
                     margin: auto;
                     font-size: large;
-                    font-weight: 800;
+                    font-weight: bolder;
                     border: 2px solid black;
                     font: 200% 'Arial';
                     color: white;
@@ -65,9 +65,8 @@
                     justify-content: space-evenly;
                     align-items: center;
                     gap: 20px;
-                    border: 2px solid black;
-                    height: 45%;
-                    width: 80%;
+                    height: 35%;
+                    width: 90%;
                     margin: auto;
                 "
             >
@@ -75,12 +74,13 @@
                     id="sample-btn"
                     class="mode-btn"
                     style="
-                        width: 30%;
+                        width: 40%;
                         height: 100%;
                         color: white;
-                        font-size: 120%;
+                        font: 110% 'Arial';
                         background-color: #444;
                         border: none;
+                        border-radius: 15px;
                     "
                     onclick="modeChange('sample')"
                 >
@@ -90,14 +90,16 @@
                     id="api-btn"
                     class="mode-btn"
                     style="
-                        width: 30%;
+                        width: 40%;
                         height: 100%;
                         color: white;
-                        font-size: 120%;
+                        font: 110% 'Arial';
                         background-color: #444;
                         border: none;
+                        border-radius: 15px;
                     "
                     onclick="modeChange('api')"
+                    disabled
                 >
                     API
                 </button>
@@ -105,12 +107,13 @@
                     id="json-btn"
                     class="mode-btn"
                     style="
-                        width: 30%;
+                        width: 40%;
                         height: 100%;
                         color: white;
-                        font-size: 120%;
+                        font: 110% 'Arial';
                         background-color: #444;
                         border: none;
+                        border-radius: 15px;
                     "
                     onclick="modeChange('json')"
                 >
@@ -136,20 +139,53 @@
                 transform: translate(-50%, -50%);
                 width: 300px;
                 padding: 20px;
-                background-color: #f0f0f0;
+                background: black;
+                opacity: 0.9;
+                color: white;
                 border-radius: 8px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                 text-align: center;
                 z-index: 1000;
             "
         >
-            <p style="font: 150% 'Arial'">
+            <p style="font: 130% 'Arial'">
                 Initializing AR Tour Guide. Please wait for a moment. This
                 message will disappear once the initialization is complete.
                 Intial Mode is set to Sample Mode.
             </p>
             <button
                 onclick="closeDialog()"
+                style="position: absolute; right: 10px; top: 10px; border: 0"
+            >
+                <img
+                    src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
+                    alt="Close"
+                />
+            </button>
+        </div>
+
+        <div
+            id="info-dialog-alert"
+            style="
+                display: none;
+                position: fixed;
+                top: 20%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 300px;
+                padding: 20px;
+                background: black;
+                opacity: 1;
+                color: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                z-index: 1000;
+            "
+        >
+            <p id="dialog-content"></p>
+            <button
+                onclick="closeAlertDialog()"
                 style="position: absolute; right: 10px; top: 10px; border: 0"
             >
                 <img

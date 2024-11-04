@@ -63,13 +63,13 @@ function modeChange(selectedMethod) {
     const activeButton = document.getElementById(`${method}-btn`);
     activeButton.style.backgroundColor = "#ff6347";
     activeButton.style.color = "black";
-    console.log("active btn", activeButton);
 
     console.log("Method changed to", method);
     document.querySelectorAll("button.mode-btn").forEach((btn) => {
         btn.disabled = false;
     });
     document.getElementById(`${method}-btn`).disabled = true;
+    document.getElementById("api-btn").disabled = true;
 
     removeAllImagesAndText();
     loadPlacesBasedOnMethod();
@@ -185,7 +185,11 @@ function renderPlaces(places) {
                 ev.detail.intersection && ev.detail.intersection.object.el;
             if (el && el === ev.target) {
                 const desc = getDescriptionByName(name, places);
-                window.alert("Successful click on " + name + "\n" + desc);
+                // window.alert("Successful click on " + name + "\n" + desc);
+                const dialogContent = document.getElementById("dialog-content");
+                dialogContent.textContent = `successful click on ${name}\n${desc}`;
+                const infoDialog = document.getElementById("info-dialog-alert");
+                infoDialog.style.display = "block";
             }
         });
 
@@ -213,3 +217,7 @@ function closeDialog() {
 }
 
 setTimeout(closeDialog, 10000);
+
+function closeDialog() {
+    document.getElementById("info-dialog-alert").style.display = "none";
+}
