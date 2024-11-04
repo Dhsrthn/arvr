@@ -3,6 +3,7 @@
     Use a mobile for the best experience 
 
 ### Demo video can be found at [link](https://www.youtube.com/watch?v=OqKNpfwWpxU)
+![thumbnail](./thumbnail.png)
 
 ### Three Modes 
 
