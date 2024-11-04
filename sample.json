@@ -1,82 +1,66 @@
 [
     {
-        "name": "Central Park",
+        "name": "Admin Block",
         "location": {
-            "lat": 40.785091,
-            "lng": -73.968285
+            "lat": 10.75796,
+            "lng": 78.813346
         },
-        "desc": "A large public park in New York City, featuring green spaces, lakes, and paths."
+        "desc": "The central hub where all administrative work of the institution is carried out."
     },
     {
-        "name": "Eiffel Tower",
+        "name": "Barn Hall",
         "location": {
-            "lat": 48.858844,
-            "lng": 2.294351
+            "lat": 10.759307,
+            "lng": 78.813577
         },
-        "desc": "An iconic landmark in Paris, France, known for its iron structure and incredible views."
+        "desc": "An auditorium that hosts all cultural activities and major guest lectures."
     },
     {
-        "name": "Great Wall of China",
+        "name": "GJCH",
         "location": {
-            "lat": 40.431908,
-            "lng": 116.570374
+            "lat": 10.761453,
+            "lng": 78.812027
         },
-        "desc": "A series of fortifications made of stone, brick, and earth across northern China."
+        "desc": "The venue where all proshows and hackathons take place."
     },
     {
-        "name": "Sydney Opera House",
+        "name": "Orion",
         "location": {
-            "lat": -33.856784,
-            "lng": 151.215297
+            "lat": 10.75975,
+            "lng": 78.811094
         },
-        "desc": "A multi-venue performing arts center in Sydney, known for its unique shell-like architecture."
+        "desc": "The main academic building where all classes are conducted."
     },
     {
-        "name": "Mount Fuji",
+        "name": "Capstone",
         "location": {
-            "lat": 35.360638,
-            "lng": 138.727363
+            "lat": 10.759939,
+            "lng": 78.814108
         },
-        "desc": "Japan's tallest mountain and an active stratovolcano, located west of Tokyo."
+        "desc": "Home to the Department of Training and Placement. It hosts major companies for internships and placements of students"
     },
     {
-        "name": "Christ the Redeemer",
+        "name": "CSE Dept",
         "location": {
-            "lat": -22.951911,
-            "lng": -43.210487
+            "lat": 10.759899,
+            "lng": 78.818567
         },
-        "desc": "A famous statue of Jesus Christ in Rio de Janeiro, Brazil, located atop Mount Corcovado."
+        "desc": "The Department of Computer Science and Engineering."
     },
     {
-        "name": "Statue of Liberty",
+        "name": "Aquamarine",
         "location": {
-            "lat": 40.689247,
-            "lng": -74.044502
+            "lat": 10.768136,
+            "lng": 78.818437
         },
-        "desc": "A colossal neoclassical sculpture on Liberty Island in New York Harbor."
+        "desc": "The 3rd-year boys' hostel providing accommodation for students."
     },
     {
-        "name": "Taj Mahal",
+        "name": "Octagon",
         "location": {
-            "lat": 27.175015,
-            "lng": 78.042155
+            "lat": 10.76054,
+            "lng": 78.814662
         },
-        "desc": "A mausoleum in Agra, India, built by Mughal Emperor Shah Jahan for his wife Mumtaz Mahal."
-    },
-    {
-        "name": "Pyramids of Giza",
-        "location": {
-            "lat": 29.979235,
-            "lng": 31.134202
-        },
-        "desc": "Ancient pyramids located in Egypt, one of the Seven Wonders of the Ancient World."
-    },
-    {
-        "name": "Golden Gate Bridge",
-        "location": {
-            "lat": 37.819929,
-            "lng": -122.478255
-        },
-        "desc": "A suspension bridge spanning the Golden Gate strait, the channel between San Francisco Bay and the Pacific Ocean."
+        "desc": "The computer centre equipped with computing facilities and resources."
     }
 ]

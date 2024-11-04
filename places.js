@@ -186,8 +186,14 @@ function renderPlaces(places) {
             if (el && el === ev.target) {
                 const desc = getDescriptionByName(name, places);
                 // window.alert("Successful click on " + name + "\n" + desc);
-                const dialogContent = document.getElementById("dialog-content");
-                dialogContent.textContent = `Successful click on ${name} \n ${desc}`;
+                const dialogContenttopic = document.getElementById(
+                    "dialog-content-topic"
+                );
+                dialogContenttopic.textContent = `${name}`;
+                const dialogContentDesc = document.getElementById(
+                    "dialog-content-desc"
+                );
+                dialogContentDesc.textContent = `${desc}`;
                 const infoDialog = document.getElementById("info-dialog-alert");
                 infoDialog.style.display = "block";
             }
