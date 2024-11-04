@@ -214,10 +214,11 @@ function renderPlaces(places) {
 
 function closeDialog() {
     document.getElementById("info-dialog").style.display = "none";
+    console.log("Dialog closed");
 }
 
-setTimeout(closeDialog, 10000);
-
-function closeDialog() {
+function closeAlertDialog() {
     document.getElementById("info-dialog-alert").style.display = "none";
 }
+
+setTimeout(closeDialog, 6000);
