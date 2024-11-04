@@ -187,7 +187,7 @@ function renderPlaces(places) {
                 const desc = getDescriptionByName(name, places);
                 // window.alert("Successful click on " + name + "\n" + desc);
                 const dialogContent = document.getElementById("dialog-content");
-                dialogContent.textContent = `successful click on ${name}\n${desc}`;
+                dialogContent.textContent = `Successful click on ${name} \n ${desc}`;
                 const infoDialog = document.getElementById("info-dialog-alert");
                 infoDialog.style.display = "block";
             }
