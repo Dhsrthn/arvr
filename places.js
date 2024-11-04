@@ -54,6 +54,17 @@ function loadPlacesBasedOnMethod() {
 
 function modeChange(selectedMethod) {
     method = selectedMethod;
+    const buttons = document.querySelectorAll(".mode-btn");
+    buttons.forEach((button) => {
+        button.style.backgroundColor = "#444";
+        button.style.color = "white";
+    });
+
+    const activeButton = document.getElementById(`${method}-btn`);
+    activeButton.style.backgroundColor = "#ff6347";
+    activeButton.style.color = "black";
+    console.log("active btn", activeButton);
+
     console.log("Method changed to", method);
     document.querySelectorAll("button.mode-btn").forEach((btn) => {
         btn.disabled = false;
@@ -149,7 +160,6 @@ function renderPlaces(places) {
     places.forEach((place, index) => {
         const latitude = place.location.lat;
         const longitude = place.location.lng;
-
         const icon = document.createElement("a-image");
         icon.setAttribute(
             "gps-entity-place",
