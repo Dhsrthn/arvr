@@ -71,7 +71,6 @@ function handleFileUpload(event) {
         reader.onload = function (e) {
             try {
                 const places = JSON.parse(e.target.result);
-                console.log("Places loaded from JSON", places);
                 renderPlaces(places);
             } catch (err) {
                 console.error("Error parsing JSON file:", err);

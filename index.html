@@ -31,41 +31,86 @@
         <div
             style="
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                width: 100%;
-                height: 10%;
+                flex-direction: column;
+                justify-content: space-around;
+                width: 98%;
+                height: 15%;
                 position: absolute;
-                bottom: 50px;
-                left: 0;
+                bottom: 0px;
+                left: 50%;
+                transform: translateX(-50%);
                 z-index: 1000;
+                border: 2px solid black;
+                padding: 10px;
+                border-radius: 40px 40px 0px 0px;
+                background: black;
+                opacity: 0.8;
             "
         >
-            <button
-                id="sample-btn"
-                class="mode-btn"
-                style="width: 20%; height: 100%"
-                onclick="modeChange('sample')"
+            <div
+                style="
+                    margin: auto;
+                    font-size: large;
+                    font-weight: 800;
+                    border: 2px solid black;
+                    font: 200% 'Arial';
+                    color: white;
+                "
             >
-                Sample Mode
-            </button>
-            <button
-                id="api-btn"
-                class="mode-btn"
-                style="width: 20%; height: 100%"
-                onclick="modeChange('api')"
+                AR Tour Guide
+            </div>
+            <div
+                style="
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    gap: 20px;
+                    border: 2px solid black;
+                    height: 45%;
+                    width: 80%;
+                    margin: auto;
+                "
             >
-                API Mode
-            </button>
-            <button
-                id="json-btn"
-                class="mode-btn"
-                style="width: 20%; height: 100%"
-                onclick="modeChange('json')"
-            >
-                JSON Mode
-            </button>
+                <button
+                    id="sample-btn"
+                    class="mode-btn"
+                    style="
+                        width: 20%;
+                        height: 100%;
+                        color: white;
+                        font: 140% 'Arial';
+                    "
+                    onclick="modeChange('sample')"
+                >
+                    Sample Mode
+                </button>
+                <button
+                    id="api-btn"
+                    class="mode-btn"
+                    style="
+                        width: 20%;
+                        height: 100%;
+                        color: white;
+                        font: 140% 'Arial';
+                    "
+                    onclick="modeChange('api')"
+                >
+                    API Mode
+                </button>
+                <button
+                    id="json-btn"
+                    class="mode-btn"
+                    style="
+                        width: 20%;
+                        height: 100%;
+                        color: white;
+                        font: 140% 'Arial';
+                    "
+                    onclick="modeChange('json')"
+                >
+                    JSON Mode
+                </button>
+            </div>
         </div>
 
         <input
@@ -92,12 +137,20 @@
                 z-index: 1000;
             "
         >
-            <p>
+            <p style="font: 150% 'Arial'">
                 Initializing AR Tour Guide. Please wait for a moment. This
                 message will disappear once the initialization is complete.
                 Intial Mode is set to Sample Mode.
             </p>
-            <button onclick="closeDialog()">Close Now</button>
+            <button
+                onclick="closeDialog()"
+                style="position: absolute; right: 10px; top: 10px; border: 0"
+            >
+                <img
+                    src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
+                    alt="Close"
+                />
+            </button>
         </div>
     </body>
 </html>
